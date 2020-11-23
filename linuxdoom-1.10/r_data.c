@@ -538,7 +538,7 @@ void R_InitTextures (void)
 	{
 	    patch->originx = SHORT(mpatch->originx);
 	    patch->originy = SHORT(mpatch->originy);
-	    patch->patch = patchlookup[SHORT(mpatch->patch)];
+	    patch->patch = patchlookup[SHORT(mpatch->patch)]; //segfault: SHORT(mpatch->patch) is out of bounds
 	    if (patch->patch == -1)
 	    {
 		I_Error ("R_InitTextures: Missing patch in texture %s",
