@@ -226,7 +226,7 @@ typedef struct
 {
     char*	name;
     int*	location;
-    int		defaultvalue;
+    int		defaultvalue; //issue with casting const char* to (int), changing to long may solve the issue 
     int		scantranslate;		// PC scan code hack
     int		untranslated;		// lousy hack
 } default_t;
@@ -254,6 +254,7 @@ default_t	defaults[] =
 
 // UNIX hack, to be removed. 
 #ifdef SNDSERV
+    //initialization issues change (int) to (long)
     {"sndserver", (int *) &sndserver_filename, (int) "sndserver"},
     {"mb_used", &mb_used, 2},
 #endif
@@ -261,6 +262,7 @@ default_t	defaults[] =
 #endif
 
 #ifdef LINUX
+    //initialization issues change (int) to (long)
     {"mousedev", (int*)&mousedev, (int)"/dev/ttyS0"},
     {"mousetype", (int*)&mousetype, (int)"microsoft"},
 #endif
@@ -284,7 +286,8 @@ default_t	defaults[] =
 
 
     {"usegamma",&usegamma, 0},
-
+  
+    //initialization issues: change (int) to (long) 
     {"chatmacro0", (int *) &chat_macros[0], (int) HUSTR_CHATMACRO0 },
     {"chatmacro1", (int *) &chat_macros[1], (int) HUSTR_CHATMACRO1 },
     {"chatmacro2", (int *) &chat_macros[2], (int) HUSTR_CHATMACRO2 },
